@@ -4,6 +4,6 @@ Este projeto foi desenvolvido durante o curso **Abstraindo um Bootcamp Usando Or
 
 No desenvolvimento desse projeto foram utilizadas as seguintes tecnologias:
 
-- Java JDK 11+
+- Java JDK 21
 - Visual Studio Code (IDE)
 - Git e GitHub

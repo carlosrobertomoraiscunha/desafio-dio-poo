@@ -3,69 +3,41 @@ package br.com.dio.desafio.dominio;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Mentoria {
-    private String titulo;
-    private String descricao;
+public non-sealed class Mentoria extends Conteudo {
     private LocalDate data;
 
-    public Mentoria() {
-    }
-
-    public Mentoria(String titulo, String descricao, LocalDate data) {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.data = data;
-    }
-
-    public String getTitulo() {
-        return this.titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescricao() {
-        return this.descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    @Override
+    public double calcularXp() {
+        return XP_PADRAO * 20d;
     }
 
     public LocalDate getData() {
         return this.data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(final LocalDate data) {
         this.data = data;
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Curso[")
-                .append("titulo=").append(this.titulo).append(", ")
-                .append("descricao=").append(this.descricao).append(", ")
-                .append("data=").append(this.data).append("]");
-
-        return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj)
             return true;
-        if (!(obj instanceof Mentoria))
+        if (obj == null || this.getClass() != obj.getClass())
             return false;
-        Mentoria mentoria = (Mentoria) obj;
-        return Objects.equals(this.titulo, mentoria.titulo)
-                && Objects.equals(this.descricao, mentoria.descricao)
-                && this.data == mentoria.data;
+        if (!super.equals(obj))
+            return false;
+        final Mentoria mentoria = (Mentoria) obj;
+        return Objects.equals(this.data, mentoria.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.titulo, this.descricao, this.data);
+        return Objects.hash(super.hashCode(), this.data);
+    }
+
+    @Override
+    public String toString() {
+        return "Mentoria [data=" + data + "] é filha de  " + super.toString();
     }
 }
